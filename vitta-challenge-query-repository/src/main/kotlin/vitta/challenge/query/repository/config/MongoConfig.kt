@@ -7,11 +7,12 @@ import org.springframework.context.annotation.Configuration
 import org.springframework.data.mongodb.config.AbstractReactiveMongoConfiguration
 import org.springframework.data.mongodb.core.ReactiveMongoTemplate
 import org.springframework.data.mongodb.repository.config.EnableReactiveMongoRepositories
+import vitta.challenge.query.repository.repositories.SquareRepository
 import vitta.challenge.query.repository.repositories.TerritoryRepository
 
 
 @Configuration
-@EnableReactiveMongoRepositories(basePackageClasses = arrayOf(TerritoryRepository::class))
+@EnableReactiveMongoRepositories(basePackageClasses = arrayOf(TerritoryRepository::class,SquareRepository::class))
 class MongoConfig : AbstractReactiveMongoConfiguration() {
 
     @Bean
