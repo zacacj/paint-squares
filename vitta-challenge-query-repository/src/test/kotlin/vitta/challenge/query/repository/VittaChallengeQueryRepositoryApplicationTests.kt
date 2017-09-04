@@ -42,9 +42,9 @@ class VittaChallengeQueryRepositoryApplicationTests {
 
 	@Test
 	fun findSquareByPoint(){
-		val square = Square(Point(x = 1, y = 2), Painted(false))
+		val square = Square(Point(x = 2, y = 4), Painted(true))
 		squareRepository.save(square).then().block()
-        val squareFetched = squareRepository.findOneByPoint(Point(1,2)).block()
-        Assert.assertEquals(square.paitend, squareFetched!!.paitend)
+        val squareFetched = squareRepository.findOneByPoint(Point(2,4)).block()
+        Assert.assertEquals(Painted(true), squareFetched!!.painted)
 	}
 }
