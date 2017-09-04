@@ -1,0 +1,17 @@
+language: java
+jdk:
+  - oraclejdk8
+sudo: true
+services:
+ - docker
+ - mongodb
+install: true
+before_install:
+script:
+ - mvn clean install
+after_success:
+ - bash <(curl -s https://codecov.io/bash)
+ - docker-compose down
+cache:
+  directories:
+- $HOME/.m2
