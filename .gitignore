@@ -33,3 +33,7 @@ classes/
 target/
 
 application-local.properties
+
+*.mvn*
+mvnw*
+data/
