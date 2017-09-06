@@ -5,3 +5,8 @@ services:
    container_name: "mongodb"
    ports:
     - 27017:27017
+ event-store:
+   image: eventstore/eventstore
+   ports:
+     - "2113:2113"
+     - "1113:1113"

@@ -1,12 +1,11 @@
 package vitta.challenge.query.repository.repositories
 
+import br.com.zup.eventsourcing.core.AggregateId
 import org.springframework.data.mongodb.repository.ReactiveMongoRepository
-import reactor.core.publisher.Mono
-import vitta.challenge.domain.Id
 import vitta.challenge.domain.Territory
 
-interface TerritoryRepository : ReactiveMongoRepository<Territory, Id> {
+interface TerritoryRepository : ReactiveMongoRepository<Territory, AggregateId> {
 
-    fun findOneById(Id: Id): Mono<Territory>
+ //   fun findOneId(id: AggregateId): Mono<Territory>
 
 }

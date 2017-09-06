@@ -6,15 +6,14 @@ import org.junit.runner.RunWith
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.http.MediaType
-import org.springframework.test.context.ContextConfiguration
 import org.springframework.test.context.junit4.SpringRunner
 import org.springframework.test.web.reactive.server.WebTestClient
-import vitta.challenge.domain.Id
 import vitta.challenge.domain.Name
 import vitta.challenge.domain.Painted
 import vitta.challenge.domain.Point
 import vitta.challenge.domain.Square
 import vitta.challenge.domain.Territory
+import vitta.challenge.domain.TerritoryId
 import vitta.challenge.query.repository.repositories.SquareRepository
 import vitta.challenge.query.repository.repositories.TerritoryRepository
 
@@ -34,20 +33,20 @@ class VittaChallengeQueryApplicationTests {
     @Before
     fun setup() {
 
-        val territory1 = Territory(id = Id("first"),
+        val territory1 = Territory(territoryId = TerritoryId("first"),
                                    name = Name("First Name"),
                                    start = Point(x = 1, y = 1),
                                    end = Point(x = 40, y = 40)
         )
-        val territory2 = Territory(id = Id("second"),
+        val territory2 = Territory(territoryId = TerritoryId("second"),
                                    name = Name("Second Name"),
                                    start = Point(x = 1, y = 1),
                                    end = Point(x = 40, y = 40)
         )
 
-        territoryRepository.saveAll(listOf(territory1,territory2)).then().block()
+        territoryRepository.saveAll(listOf(territory1, territory2)).then().block()
 
-        val square = Square(Point( x = 1, y = 2), Painted(false))
+        val square = Square(Point(x = 1, y = 2), Painted(false))
         squareRepository.save(square).then().block()
     }
 

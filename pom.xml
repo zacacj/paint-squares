@@ -13,13 +13,15 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>2.0.0.M3</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <relativePath/>
     </parent>
 
     <modules>
         <module>vitta-challenge-query-application</module>
         <module>vitta-challenge-query-repository</module>
         <module>vitta-challenge-domain</module>
+        <module>vitta-challenge-command-application</module>
+        <module>vitta-challenge-command-repository</module>
     </modules>
 
     <properties>
@@ -28,6 +30,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
         <kotlin.version>1.1.4-3</kotlin.version>
+        <event.sourcing.framework.version>0.0.14-SNAPSHOT</event.sourcing.framework.version>
     </properties>
 
     <dependencies>
@@ -55,7 +58,24 @@
                 <artifactId>vitta-challenge-query-repository</artifactId>
                 <version>${project.version}</version>
             </dependency>
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>vitta-challenge-command-repository</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>br.com.zup</groupId>
+                <artifactId>event-sourcing-core</artifactId>
+                <version>${event.sourcing.framework.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>br.com.zup</groupId>
+                <artifactId>event-store-connector</artifactId>
+                <version>${event.sourcing.framework.version}</version>
+            </dependency>
         </dependencies>
+
     </dependencyManagement>
 
 
