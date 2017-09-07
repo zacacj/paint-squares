@@ -12,7 +12,7 @@ data class TerritoryRepresentation(val id: String? = null,
                                    @field:[NotNull Valid] val start: PointRepresentation,
                                    @field:[NotNull Valid] val end: PointRepresentation,
                                    val area: Int? = null,
-                                   val paited_area: Int? = null) {
+                                   val painted_area: Int? = null) {
     companion object {
         fun fromDomain(territory: Territory): TerritoryRepresentation {
             return TerritoryRepresentation(
@@ -25,7 +25,7 @@ data class TerritoryRepresentation(val id: String? = null,
                             territory.end!!
                     ),
                     area = territory.area.value,
-                    paited_area = territory.paintedArea.value
+                    painted_area = territory.paintedArea.value
             )
         }
     }

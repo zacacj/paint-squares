@@ -4,8 +4,6 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<artifactId>vitta-challenge-command-application</artifactId>
-    <version>1.0-SNAPSHOT</version>
-    <packaging>jar</packaging>
 
     <parent>
         <groupId>vitta.challenge</groupId>
@@ -15,24 +13,21 @@
 
 	<name>vitta-challenge-command-application</name>
 
-	<dependencies>
-
+    <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>vitta-challenge-command-repository</artifactId>
         </dependency>
-
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-		</dependency>
-	</dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-webflux</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
 
     <build>
         <plugins>

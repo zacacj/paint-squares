@@ -1,9 +1,9 @@
 package vitta.challenge.domain
 
-import br.com.zup.eventsourcing.core.RepositoryManager
+import br.com.zup.eventsourcing.core.Repository
 
 
-class TerritoryCommandHandler(val repositoryManager: RepositoryManager<Territory>) {
+class TerritoryCommandHandler(val repository: Repository<Territory>) {
 
     fun handle(command: CreateTerritory): Territory {
         val territory = Territory(territoryId = command.id,
@@ -11,7 +11,7 @@ class TerritoryCommandHandler(val repositoryManager: RepositoryManager<Territory
                                   start = command.start,
                                   end = command.end
         )
-        repositoryManager.save(territory)
+        repository.save(territory)
         return territory
     }
 
