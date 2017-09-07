@@ -78,15 +78,6 @@
 
     </dependencyManagement>
 
-    <repositories>
-        <repository>
-            <id>internal</id>
-            <name>Internal Release Repository</name>
-            <url>https://mymavenrepo.com/repo/WN1x5OeWnaLvUMM5bBwk/</url>
-        </repository>
-    </repositories>
-
-
     <build>
         <sourceDirectory>${project.basedir}/src/main/kotlin</sourceDirectory>
         <testSourceDirectory>${project.basedir}/src/test/kotlin</testSourceDirectory>
@@ -163,6 +154,11 @@
             <snapshots>
                 <enabled>false</enabled>
             </snapshots>
+        </repository>
+        <repository>
+            <id>internal</id>
+            <name>Internal Release Repository</name>
+            <url>https://mymavenrepo.com/repo/WN1x5OeWnaLvUMM5bBwk/</url>
         </repository>
     </repositories>
 
