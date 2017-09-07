@@ -10,3 +10,6 @@ services:
    ports:
      - "2113:2113"
      - "1113:1113"
+   extra_hosts:
+     - "eventstore.com:127.0.0.1"
+     - "localhost:127.0.0.1"
