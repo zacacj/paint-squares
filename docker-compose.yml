@@ -1,5 +1,10 @@
 version: '2'
 services:
+ proxy:
+   build: ./nginx
+   ports:
+    - 8888:8888
+   restart: always
  mongodb:
    image: mongo:latest
    container_name: "mongodb"
@@ -13,10 +18,18 @@ services:
    extra_hosts:
      - "eventstore.com:127.0.0.1"
      - "localhost:127.0.0.1"
- command-application:
-   image: docker.io/zacacj/vitta-challenge-command:1.0-SNAPSHOT
+   restart: always
+ command-application-1:
+   image: zacacj/vitta-challenge-command:1.0-SNAPSHOT
    depends_on:
      - mongodb
      - event-store
-   ports:
-     - "8080:8080"
+     - proxy
+   restart: always
+ command-application-2:
+   image: zacacj/vitta-challenge-command:1.0-SNAPSHOT
+   depends_on:
+     - mongodb
+     - event-store
+     - proxy
+   restart: always

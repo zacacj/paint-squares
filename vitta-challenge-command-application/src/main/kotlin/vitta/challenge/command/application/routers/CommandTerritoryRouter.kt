@@ -14,9 +14,18 @@ class CommandTerritoryRouter(val commandTerritoryHandler: CommandTerritoryHandle
     @Bean
     fun commandTerritoryRouterFunction(): RouterFunction<*> {
         return router {
-            POST("/territories") { commandTerritoryHandler.handleAddTerritories(it) }
-            DELETE("/territories/{id}") { commandTerritoryHandler.handleDeleteTerritories(it) }
-            PATCH("/squares/{x}/{y}") { commandSquareHandler.handlePaintSquare(it) }
+            POST("/territories") {
+                println(it)
+                commandTerritoryHandler.handleAddTerritories(it)
+            }
+            DELETE("/territories/{id}") {
+                println(it)
+                commandTerritoryHandler.handleDeleteTerritories(it)
+            }
+            PATCH("/squares/{x}/{y}") {
+                println(it)
+                commandSquareHandler.handlePaintSquare(it)
+            }
         }
     }
 
