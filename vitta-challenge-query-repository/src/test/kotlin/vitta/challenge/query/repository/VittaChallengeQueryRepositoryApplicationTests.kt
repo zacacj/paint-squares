@@ -8,12 +8,12 @@ import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.test.context.ContextConfiguration
 import org.springframework.test.context.junit4.SpringRunner
 import vitta.challenge.domain.Area
-import vitta.challenge.domain.Name
 import vitta.challenge.domain.Painted
 import vitta.challenge.domain.Point
 import vitta.challenge.domain.Square
-import vitta.challenge.domain.Territory
 import vitta.challenge.domain.TerritoryId
+import vitta.challenge.representation.PointRepresentation
+import vitta.challenge.representation.TerritoryRepresentation
 
 @RunWith(SpringRunner::class)
 @SpringBootTest
@@ -29,16 +29,16 @@ class VittaChallengeQueryRepositoryApplicationTests {
     @Test
     fun findTerritoriesById() {
         val territoryId = TerritoryId()
-        val territory = Territory(territoryId = territoryId,
-                                  name = Name("First Name"),
-                                  start = Point(x = 0, y = 0),
-                                  end = Point(x = 40, y = 40)
+        val territory = TerritoryRepresentation(id = territoryId.value,
+                                                name = "First Name",
+                                                start = PointRepresentation(x = 0, y = 0),
+                                                end = PointRepresentation(x = 40, y = 40)
         )
         territoryRepository.save(territory).then().block()
-        val territoryFetched = territoryRepository.findById(territoryId).block()
+        val territoryFetched = territoryRepository.findById(territoryId.value).block()
         Assert.assertEquals(territory.name, territoryFetched!!.name)
         Assert.assertEquals(Area(1600), territoryFetched.area)
-        Assert.assertEquals(Area(0), territoryFetched.paintedArea)
+        Assert.assertEquals(Area(0), territoryFetched.painted_area)
     }
 
     @Test

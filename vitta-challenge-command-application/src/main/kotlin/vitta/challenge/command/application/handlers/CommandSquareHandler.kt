@@ -7,11 +7,11 @@ import org.springframework.web.reactive.function.server.ServerResponse
 import org.springframework.web.reactive.function.server.body
 import reactor.core.publisher.Mono
 import reactor.core.publisher.toMono
-import vitta.challenge.command.application.representation.ErrorRepresentation
-import vitta.challenge.command.application.representation.SquareRepresentation
 import vitta.challenge.domain.PaintSquare
 import vitta.challenge.domain.Point
 import vitta.challenge.domain.TerritoryCommandHandler
+import vitta.challenge.representation.ErrorRepresentation
+import vitta.challenge.representation.SquareRepresentation
 
 
 @Service

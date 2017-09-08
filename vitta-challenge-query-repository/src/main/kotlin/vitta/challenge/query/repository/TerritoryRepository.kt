@@ -1,7 +1,6 @@
 package vitta.challenge.query.repository
 
-import br.com.zup.eventsourcing.core.AggregateId
 import org.springframework.data.mongodb.repository.ReactiveMongoRepository
-import vitta.challenge.domain.Territory
+import vitta.challenge.representation.TerritoryRepresentation
 
-interface TerritoryRepository : ReactiveMongoRepository<Territory, AggregateId>
+interface TerritoryRepository : ReactiveMongoRepository<TerritoryRepresentation, String>

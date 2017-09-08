@@ -8,14 +8,14 @@ import org.springframework.web.reactive.function.server.ServerResponse
 import org.springframework.web.reactive.function.server.body
 import reactor.core.publisher.Mono
 import reactor.core.publisher.toMono
-import vitta.challenge.command.application.representation.ErrorRepresentation
-import vitta.challenge.command.application.representation.TerritoryRepresentation
 import vitta.challenge.domain.CreateTerritory
 import vitta.challenge.domain.DeleteTerritory
 import vitta.challenge.domain.Name
 import vitta.challenge.domain.Point
 import vitta.challenge.domain.TerritoryCommandHandler
 import vitta.challenge.domain.TerritoryId
+import vitta.challenge.representation.ErrorRepresentation
+import vitta.challenge.representation.TerritoryRepresentation
 import java.net.URI
 
 
@@ -44,8 +44,8 @@ class CommandTerritoryHandler(val territoryCommandHandler: TerritoryCommandHandl
     private fun fromRequestToCommand(it: TerritoryRepresentation, territoryId: TerritoryId): CreateTerritory {
         return CreateTerritory(id = territoryId,
                                name = Name(it.name!!),
-                               start = Point(it.start!!.x!!, it.start.y!!),
-                               end = Point(it.end!!.x!!, it.end.y!!)
+                               start = Point(it.start!!.x!!, it.start!!.y!!),
+                               end = Point(it.end!!.x!!, it.end!!.y!!)
         )
     }
 

@@ -22,6 +22,10 @@
             <groupId>vitta.challenge</groupId>
             <artifactId>vitta-challenge-domain</artifactId>
         </dependency>
+		<dependency>
+			<groupId>vitta.challenge</groupId>
+			<artifactId>vitta-challenge-representations</artifactId>
+		</dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-mongodb-reactive</artifactId>

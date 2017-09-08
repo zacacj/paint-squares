@@ -15,6 +15,10 @@
 
     <dependencies>
         <dependency>
+            <groupId>vitta.challenge</groupId>
+            <artifactId>vitta-challenge-representations</artifactId>
+        </dependency>
+        <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>vitta-challenge-command-repository</artifactId>
         </dependency>

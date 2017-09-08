@@ -5,8 +5,8 @@ import org.springframework.web.reactive.function.server.ServerRequest
 import org.springframework.web.reactive.function.server.ServerResponse
 import reactor.core.publisher.Mono
 import vitta.challenge.domain.Point
-import vitta.challenge.domain.Square
 import vitta.challenge.query.repository.SquareRepository
+import vitta.challenge.representation.SquareRepresentation
 
 @Service
 class QuerySquareHandler(val squareRepository: SquareRepository) {
@@ -15,7 +15,11 @@ class QuerySquareHandler(val squareRepository: SquareRepository) {
                                                      y = request.pathVariable("y").toInt()
         )
         )
-                .flatMap { ServerResponse.ok().body(Mono.just(it), Square::class.java) }
+                .flatMap {
+                    ServerResponse.ok().body(Mono.just(SquareRepresentation.fromDomain(it)),
+                                             SquareRepresentation::class.java
+                    )
+                }
                 .switchIfEmpty(ServerResponse.notFound().build())
     }
 }

@@ -12,8 +12,8 @@ import org.springframework.test.web.reactive.server.WebTestClient
 import org.springframework.web.reactive.function.BodyInserters
 import org.springframework.web.reactive.function.server.RouterFunction
 import vitta.challenge.command.application.config.ControllerApplicationConfig
-import vitta.challenge.command.application.representation.PointRepresentation
-import vitta.challenge.command.application.representation.TerritoryRepresentation
+import vitta.challenge.representation.PointRepresentation
+import vitta.challenge.representation.TerritoryRepresentation
 
 
 @RunWith(SpringRunner::class)

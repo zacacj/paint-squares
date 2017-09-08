@@ -12,6 +12,8 @@ import vitta.challenge.domain.Territory
 import vitta.challenge.domain.TerritoryCreated
 import vitta.challenge.domain.TerritoryDeleted
 import vitta.challenge.query.repository.TerritoryRepository
+import vitta.challenge.representation.PointRepresentation
+import vitta.challenge.representation.TerritoryRepresentation
 
 
 @Service
@@ -27,21 +29,22 @@ class TerritoryEventHandler(val territoryRepository: TerritoryRepository,
 
     private fun execute(aggregateId: AggregateId, event: TerritoryCreated, version: AggregateVersion) {
 
-        territoryRepository.save(Territory(territoryId = event.territoryId,
-                                           name = event.name,
-                                           start = event.start,
-                                           end = event.end
+        territoryRepository.save(TerritoryRepresentation.fromDomain(Territory(territoryId = event.territoryId,
+                                                                              name = event.name,
+                                                                              start = event.start,
+                                                                              end = event.end
+        )
         )
         ).subscribe()
     }
 
     private fun execute(aggregateId: AggregateId, event: TerritoryDeleted, version: AggregateVersion) {
-        territoryRepository.deleteById(aggregateId).subscribe()
+        territoryRepository.deleteById(aggregateId.value).subscribe()
     }
 
     private fun execute(aggregateId: AggregateId, event: SquarePainted, version: AggregateVersion) {
-        territoryRepository.findById(aggregateId).subscribe {
-            it.paint(event.point)
+        territoryRepository.findById(aggregateId.value).subscribe {
+            it.painted_points.add(PointRepresentation(event.point.x, event.point.y))
             territoryRepository.save(it).subscribe()
         }
     }

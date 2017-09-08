@@ -23,6 +23,7 @@
         <module>vitta-challenge-query-repository</module>
         <module>vitta-challenge-command-application</module>
         <module>vitta-challenge-query-event-handler</module>
+        <module>vitta-challenge-representations</module>
     </modules>
 
     <properties>
@@ -68,6 +69,11 @@
             <dependency>
                 <groupId>${project.groupId}</groupId>
                 <artifactId>vitta-challenge-query-repository</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>vitta-challenge-representations</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>

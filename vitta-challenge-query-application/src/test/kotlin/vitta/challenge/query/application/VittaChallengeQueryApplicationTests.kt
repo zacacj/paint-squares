@@ -8,14 +8,13 @@ import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.http.MediaType
 import org.springframework.test.context.junit4.SpringRunner
 import org.springframework.test.web.reactive.server.WebTestClient
-import vitta.challenge.domain.Name
 import vitta.challenge.domain.Painted
 import vitta.challenge.domain.Point
 import vitta.challenge.domain.Square
-import vitta.challenge.domain.Territory
-import vitta.challenge.domain.TerritoryId
 import vitta.challenge.query.repository.SquareRepository
 import vitta.challenge.query.repository.TerritoryRepository
+import vitta.challenge.representation.PointRepresentation
+import vitta.challenge.representation.TerritoryRepresentation
 
 @RunWith(SpringRunner::class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
@@ -33,15 +32,15 @@ class VittaChallengeQueryApplicationTests {
     @Before
     fun setup() {
 
-        val territory1 = Territory(territoryId = TerritoryId("first"),
-                                   name = Name("First Name"),
-                                   start = Point(x = 1, y = 1),
-                                   end = Point(x = 40, y = 40)
+        val territory1 = TerritoryRepresentation(id = "first",
+                                                 name = "First Name",
+                                                 start = PointRepresentation(x = 1, y = 1),
+                                                 end = PointRepresentation(x = 40, y = 40)
         )
-        val territory2 = Territory(territoryId = TerritoryId("second"),
-                                   name = Name("Second Name"),
-                                   start = Point(x = 1, y = 1),
-                                   end = Point(x = 40, y = 40)
+        val territory2 = TerritoryRepresentation(id = "second",
+                                                 name = "Second Name",
+                                                 start = PointRepresentation(x = 1, y = 1),
+                                                 end = PointRepresentation(x = 40, y = 40)
         )
 
         territoryRepository.saveAll(listOf(territory1, territory2)).then().block()
