@@ -14,6 +14,9 @@ services:
      - "eventstore.com:127.0.0.1"
      - "localhost:127.0.0.1"
  command-application:
-   image: zacacj/vitta-challenge-command
+   image: docker.io/zacacj/vitta-challenge-command:1.0-SNAPSHOT
+   depends_on:
+     - mongodb
+     - event-store
    ports:
      - "8080:8080"
