@@ -4,7 +4,17 @@ services:
    build: ./nginx
    ports:
     - 8888:8888
+   depends_on:
+     - command-application-2
+     - command-application-1
    restart: always
+ setup:
+  image: maven:3.5.0-jdk-8
+  volumes:
+   - .:/home/application
+  command: ["/home/application/run.sh"]
+  depends_on:
+    - event-store
  mongodb:
    image: mongo:latest
    container_name: "mongodb"
@@ -22,14 +32,20 @@ services:
  command-application-1:
    image: zacacj/vitta-challenge-command:1.0-SNAPSHOT
    depends_on:
-     - mongodb
-     - event-store
-     - proxy
+     - setup
    restart: always
  command-application-2:
    image: zacacj/vitta-challenge-command:1.0-SNAPSHOT
    depends_on:
-     - mongodb
-     - event-store
-     - proxy
+     - setup
    restart: always
+ command-query-1:
+   image: zacacj/vitta-challenge-query:1.0-SNAPSHOT
+   depends_on:
+     - setup
+   restart: always
+ command-query-2:
+    image: zacacj/vitta-challenge-query:1.0-SNAPSHOT
+    depends_on:
+      - setup
+    restart: always

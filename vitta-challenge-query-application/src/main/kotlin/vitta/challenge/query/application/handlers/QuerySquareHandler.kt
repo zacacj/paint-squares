@@ -6,15 +6,16 @@ import org.springframework.web.reactive.function.server.ServerResponse
 import reactor.core.publisher.Mono
 import vitta.challenge.domain.Point
 import vitta.challenge.domain.Square
-import vitta.challenge.query.repository.repositories.SquareRepository
-
+import vitta.challenge.query.repository.SquareRepository
 
 @Service
 class QuerySquareHandler(val squareRepository: SquareRepository) {
     fun handleGetSquareById(request: ServerRequest): Mono<ServerResponse> {
         return squareRepository.findOneByPoint(Point(x = request.pathVariable("x").toInt(),
-                                                     y = request.pathVariable("y").toInt()))
+                                                     y = request.pathVariable("y").toInt()
+        )
+        )
                 .flatMap { ServerResponse.ok().body(Mono.just(it), Square::class.java) }
-                .switchIfEmpty( ServerResponse.notFound().build())
+                .switchIfEmpty(ServerResponse.notFound().build())
     }
 }

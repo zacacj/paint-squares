@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <parent>
+        <artifactId>vitta-challenge</artifactId>
+        <groupId>vitta.challenge</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>vitta-challenge-query-event-handler</artifactId>
+    <packaging>jar</packaging>
+
+    <name>vitta.challenge vitta-challenge-query-event-handler</name>
+
+
+    <dependencies>
+        <dependency>
+            <groupId>br.com.zup</groupId>
+            <artifactId>event-store-connector</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>vitta.challenge</groupId>
+            <artifactId>vitta-challenge-query-repository</artifactId>
+        </dependency>
+    </dependencies>
+
+
+</project>

@@ -18,10 +18,11 @@
 
     <modules>
         <module>vitta-challenge-domain</module>
-        <module>vitta-challenge-query-repository</module>
-        <module>vitta-challenge-query-application</module>
         <module>vitta-challenge-command-repository</module>
+        <module>vitta-challenge-query-application</module>
+        <module>vitta-challenge-query-repository</module>
         <module>vitta-challenge-command-application</module>
+        <module>vitta-challenge-query-event-handler</module>
     </modules>
 
     <properties>
@@ -30,7 +31,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
         <kotlin.version>1.1.4-3</kotlin.version>
-        <event.sourcing.framework.version>0.0.15-SNAPSHOT</event.sourcing.framework.version>
+        <event.sourcing.framework.version>0.0.16-SNAPSHOT</event.sourcing.framework.version>
         <docker.image.prefix>zacacj</docker.image.prefix>
     </properties>
 
@@ -56,12 +57,17 @@
             </dependency>
             <dependency>
                 <groupId>${project.groupId}</groupId>
-                <artifactId>vitta-challenge-query-repository</artifactId>
+                <artifactId>vitta-challenge-command-repository</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>${project.groupId}</groupId>
-                <artifactId>vitta-challenge-command-repository</artifactId>
+                <artifactId>vitta-challenge-query-event-handler</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>vitta-challenge-query-repository</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
@@ -69,7 +75,6 @@
                 <artifactId>event-sourcing-core</artifactId>
                 <version>${event.sourcing.framework.version}</version>
             </dependency>
-
             <dependency>
                 <groupId>br.com.zup</groupId>
                 <artifactId>event-store-connector</artifactId>

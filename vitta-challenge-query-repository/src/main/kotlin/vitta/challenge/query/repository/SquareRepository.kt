@@ -1,4 +1,4 @@
-package vitta.challenge.query.repository.repositories
+package vitta.challenge.query.repository
 
 import org.springframework.data.mongodb.repository.ReactiveMongoRepository
 import reactor.core.publisher.Mono

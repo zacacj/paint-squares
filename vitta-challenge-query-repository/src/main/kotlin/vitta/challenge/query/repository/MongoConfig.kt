@@ -1,4 +1,4 @@
-package vitta.challenge.query.repository.config
+package vitta.challenge.query.repository
 
 import com.mongodb.reactivestreams.client.MongoClient
 import com.mongodb.reactivestreams.client.MongoClients
@@ -7,12 +7,13 @@ import org.springframework.context.annotation.Configuration
 import org.springframework.data.mongodb.config.AbstractReactiveMongoConfiguration
 import org.springframework.data.mongodb.core.ReactiveMongoTemplate
 import org.springframework.data.mongodb.repository.config.EnableReactiveMongoRepositories
-import vitta.challenge.query.repository.repositories.SquareRepository
-import vitta.challenge.query.repository.repositories.TerritoryRepository
 
 
 @Configuration
-@EnableReactiveMongoRepositories(basePackageClasses = arrayOf(TerritoryRepository::class,SquareRepository::class))
+@EnableReactiveMongoRepositories(basePackageClasses = arrayOf(
+        TerritoryRepository::class, SquareRepository::class
+)
+)
 class MongoConfig : AbstractReactiveMongoConfiguration() {
 
     @Bean
@@ -21,7 +22,7 @@ class MongoConfig : AbstractReactiveMongoConfiguration() {
     }
 
     override fun getDatabaseName(): String {
-        return "test"
+        return "reactive"
     }
 
     @Bean

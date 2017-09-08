@@ -17,13 +17,12 @@ import vitta.challenge.domain.Point
 import vitta.challenge.domain.TerritoryCommandHandler
 import vitta.challenge.domain.TerritoryId
 import java.net.URI
-import javax.validation.Valid
 
 
 @Service
 class CommandTerritoryHandler(val territoryCommandHandler: TerritoryCommandHandler) {
 
-    fun handleAddTerritories(@Valid request: ServerRequest): Mono<ServerResponse> {
+    fun handleAddTerritories(request: ServerRequest): Mono<ServerResponse> {
 
         val territoryRequest = request.bodyToMono(TerritoryRepresentation::class.java)
         val territoryId = TerritoryId()

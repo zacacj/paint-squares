@@ -14,8 +14,8 @@ import vitta.challenge.domain.Point
 import vitta.challenge.domain.Square
 import vitta.challenge.domain.Territory
 import vitta.challenge.domain.TerritoryId
-import vitta.challenge.query.repository.repositories.SquareRepository
-import vitta.challenge.query.repository.repositories.TerritoryRepository
+import vitta.challenge.query.repository.SquareRepository
+import vitta.challenge.query.repository.TerritoryRepository
 
 @RunWith(SpringRunner::class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
@@ -46,7 +46,7 @@ class VittaChallengeQueryApplicationTests {
 
         territoryRepository.saveAll(listOf(territory1, territory2)).then().block()
 
-        val square = Square(null,Point(x = 1, y = 2), Painted(false))
+        val square = Square(null, Point(x = 1, y = 2), Painted(false))
         squareRepository.save(square).then().block()
     }
 
