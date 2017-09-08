@@ -114,7 +114,7 @@ class CommandTerritoryTests {
     fun addTerritory_StartNotInformed() {
 
         val territory1 = TerritoryRepresentation(
-                name = "",
+                name = "Teste",
                 end = PointRepresentation(x = 40, y = 40)
         )
         webTestClient.post().uri("/territories")
@@ -129,8 +129,8 @@ class CommandTerritoryTests {
     fun addTerritory_EndNotInformed() {
 
         val territory1 = TerritoryRepresentation(
-                name = "",
-                end = PointRepresentation(x = 40, y = 40)
+                name = "Teste",
+                start = PointRepresentation(x = 40, y = 40)
         )
         webTestClient.post().uri("/territories")
                 .contentType(MediaType.APPLICATION_JSON_UTF8)
@@ -145,7 +145,8 @@ class CommandTerritoryTests {
 
         val territory1 = TerritoryRepresentation(
                 name = "",
-                start = PointRepresentation( y = 40)
+                start = PointRepresentation( y = 40),
+                end = PointRepresentation(x = 5, y = 5)
         )
         webTestClient.post().uri("/territories")
                 .contentType(MediaType.APPLICATION_JSON_UTF8)
@@ -159,8 +160,9 @@ class CommandTerritoryTests {
     fun addTerritory_StartYNotInformed() {
 
         val territory1 = TerritoryRepresentation(
-                name = "",
-                start = PointRepresentation( x = 40)
+                name = "Valid",
+                start = PointRepresentation( x = 40),
+                end = PointRepresentation(x = 5, y = 5)
         )
         webTestClient.post().uri("/territories")
                 .contentType(MediaType.APPLICATION_JSON_UTF8)
@@ -175,7 +177,8 @@ class CommandTerritoryTests {
     fun addTerritory_EndXNotInformed() {
 
         val territory1 = TerritoryRepresentation(
-                name = "",
+                name = "First Name",
+                start = PointRepresentation(x = 1, y = 1),
                 end = PointRepresentation( y = 40)
         )
         webTestClient.post().uri("/territories")
@@ -190,7 +193,8 @@ class CommandTerritoryTests {
     fun addTerritory_EndYNotInformed() {
 
         val territory1 = TerritoryRepresentation(
-                name = "",
+                name = "First Name",
+                start = PointRepresentation(x = 1, y = 1),
                 end = PointRepresentation( x = 40)
         )
         webTestClient.post().uri("/territories")
@@ -200,6 +204,71 @@ class CommandTerritoryTests {
                 .expectStatus()
                 .is4xxClientError
     }
+
+    @Test
+    fun addTerritory_EndXEqualStartX() {
+
+        val territory1 = TerritoryRepresentation(
+                name = "First Name",
+                start = PointRepresentation(x = 1, y = 1),
+                end = PointRepresentation(x = 1, y = 5)
+        )
+        webTestClient.post().uri("/territories")
+                .contentType(MediaType.APPLICATION_JSON_UTF8)
+                .body(BodyInserters.fromObject(territory1))
+                .exchange()
+                .expectStatus()
+                .is4xxClientError
+    }
+
+    @Test
+    fun addTerritory_EndYEqualStartY() {
+
+        val territory1 = TerritoryRepresentation(
+                name = "First Name",
+                start = PointRepresentation(x = 1, y = 1),
+                end = PointRepresentation(x = 5, y = 1)
+        )
+        webTestClient.post().uri("/territories")
+                .contentType(MediaType.APPLICATION_JSON_UTF8)
+                .body(BodyInserters.fromObject(territory1))
+                .exchange()
+                .expectStatus()
+                .is4xxClientError
+    }
+
+    @Test
+    fun addTerritory_XMustBeGreaterOrEqualThenZero() {
+
+        val territory1 = TerritoryRepresentation(
+                name = "First Name",
+                start = PointRepresentation(x = -1, y = 4),
+                end = PointRepresentation(x = 5, y = 1)
+        )
+        webTestClient.post().uri("/territories")
+                .contentType(MediaType.APPLICATION_JSON_UTF8)
+                .body(BodyInserters.fromObject(territory1))
+                .exchange()
+                .expectStatus()
+                .is4xxClientError
+    }
+
+    @Test
+    fun addTerritory_YMustBeGreaterOrEqualThenZero() {
+
+        val territory1 = TerritoryRepresentation(
+                name = "First Name",
+                start = PointRepresentation(x = 1, y = -1),
+                end = PointRepresentation(x = 5, y = 1)
+        )
+        webTestClient.post().uri("/territories")
+                .contentType(MediaType.APPLICATION_JSON_UTF8)
+                .body(BodyInserters.fromObject(territory1))
+                .exchange()
+                .expectStatus()
+                .is4xxClientError
+    }
+
 
     @Test
     fun deleteTerritory(){
@@ -273,6 +342,15 @@ class CommandTerritoryTests {
                 .exchange()
                 .expectStatus()
                 .is2xxSuccessful
+
+    }
+
+    @Test
+    fun paintTerritory_NotFound(){
+        webTestClient.patch().uri("/squares/111/11/")
+                .exchange()
+                .expectStatus()
+                .isNotFound
 
     }
 

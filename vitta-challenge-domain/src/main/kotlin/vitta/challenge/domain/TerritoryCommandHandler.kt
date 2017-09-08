@@ -50,9 +50,9 @@ class TerritoryCommandHandler(val territoryRepository: Repository<Territory>,
 
         val plane = planeRepository.get(AggregateId("total"))
 
-        val territoryId = plane.area[command.point.x][command.point.y]!!.territoryId
+        val territoryId = plane.area[command.point.x][command.point.y]?.territoryId ?: throw Repository.NotFoundException()
 
-        val territory = territoryRepository.get(territoryId!!)
+        val territory = territoryRepository.get(territoryId)
 
         territory.paint(command.point)
         territoryRepository.save(territory)
