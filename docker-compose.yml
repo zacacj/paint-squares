@@ -13,3 +13,7 @@ services:
    extra_hosts:
      - "eventstore.com:127.0.0.1"
      - "localhost:127.0.0.1"
+ command-application:
+   image: zacacj/vitta-challenge-command
+   ports:
+     - "8080:8080"

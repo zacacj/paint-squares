@@ -46,7 +46,7 @@ class VittaChallengeQueryApplicationTests {
 
         territoryRepository.saveAll(listOf(territory1, territory2)).then().block()
 
-        val square = Square(Point(x = 1, y = 2), Painted(false))
+        val square = Square(null,Point(x = 1, y = 2), Painted(false))
         squareRepository.save(square).then().block()
     }
 

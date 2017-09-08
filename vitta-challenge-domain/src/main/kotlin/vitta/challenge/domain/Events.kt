@@ -10,3 +10,6 @@ class TerritoryCreated(val territoryId: TerritoryId,
 
 class TerritoryDeleted : Event()
 class SquarePainted(val point: Point) : Event()
+class SquareAdded(val square: Square): Event()
+class SquareDeleted(val square: Square): Event()
+class PlaneCreated(): Event()

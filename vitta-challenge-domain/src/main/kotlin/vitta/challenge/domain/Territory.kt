@@ -43,7 +43,7 @@ class Territory() : AggregateRoot() {
     }
 
     fun apply(event: SquarePainted) {
-        squaresPainted.put(event.point, Square(event.point, Painted(true)))
+        squaresPainted.put(event.point, Square(null,event.point, Painted(true)))
     }
 
     fun delete() {
