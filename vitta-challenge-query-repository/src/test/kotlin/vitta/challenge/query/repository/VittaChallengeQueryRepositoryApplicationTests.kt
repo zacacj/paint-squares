@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.test.context.ContextConfiguration
 import org.springframework.test.context.junit4.SpringRunner
-import vitta.challenge.domain.Area
 import vitta.challenge.domain.Painted
 import vitta.challenge.domain.Point
 import vitta.challenge.domain.Square
@@ -37,8 +36,8 @@ class VittaChallengeQueryRepositoryApplicationTests {
         territoryRepository.save(territory).then().block()
         val territoryFetched = territoryRepository.findById(territoryId.value).block()
         Assert.assertEquals(territory.name, territoryFetched!!.name)
-        Assert.assertEquals(Area(1600), territoryFetched.area)
-        Assert.assertEquals(Area(0), territoryFetched.painted_area)
+        Assert.assertEquals(1600, territoryFetched.area)
+        Assert.assertEquals(0, territoryFetched.painted_area)
     }
 
     @Test

@@ -8,9 +8,11 @@ data class TerritoryRepresentation(val id: String? = null,
                                    val name: String? = null,
                                    val start: PointRepresentation? = null,
                                    val end: PointRepresentation? = null,
-                                   val area: Int? = null,
-                                   val painted_area: Int? = null,
-                                   val painted_points: MutableSet<PointRepresentation> = mutableSetOf()) {
+                                   var painted_points: MutableSet<PointRepresentation> = mutableSetOf()) {
+    val painted_area: Int
+        get() = painted_points.size
+    val area: Int
+        get() = (end!!.x!! - start!!.x!!) * (end!!.y!! - start!!.y!!)
 
     fun validate() {
         if (null == name || name == "")
@@ -38,9 +40,7 @@ data class TerritoryRepresentation(val id: String? = null,
                     ),
                     end = PointRepresentation.fromDomain(
                             territory.end!!
-                    ),
-                    area = territory.area.value,
-                    painted_area = territory.paintedArea.value
+                    )
             )
         }
     }
