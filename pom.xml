@@ -24,6 +24,8 @@
         <module>vitta-challenge-command-application</module>
         <module>vitta-challenge-query-event-handler</module>
         <module>vitta-challenge-representations</module>
+        <module>vitta-challenge-ui-application</module>
+        <module>vitta-challenge-ui-integration</module>
     </modules>
 
     <properties>
@@ -64,6 +66,11 @@
             <dependency>
                 <groupId>${project.groupId}</groupId>
                 <artifactId>vitta-challenge-query-event-handler</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>vitta-challenge-ui-integration</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>

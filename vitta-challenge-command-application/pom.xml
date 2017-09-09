@@ -41,8 +41,8 @@
             </plugin>
             <plugin>
                 <groupId>com.spotify</groupId>
-                <artifactId>dockerfile-maven-plugin</artifactId>
-                <version>1.3.5</version>
+                <artifactId>docker-maven-plugin</artifactId>
+                <version>1.0.0</version>
                 <executions>
                     <execution>
                         <id>default</id>
@@ -54,8 +54,12 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <repository>zacacj/vitta-challenge-command</repository>
-                    <tag>${project.version}</tag>
+                    <dockerDirectory>${project.basedir}</dockerDirectory>
+                    <imageName>zacacj/${project.artifactId}</imageName>
+                    <imageTags>
+                        <imageTag>${project.version}</imageTag>
+                        <imageTag>latest</imageTag>
+                    </imageTags>
                 </configuration>
             </plugin>
         </plugins>

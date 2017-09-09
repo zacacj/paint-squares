@@ -9,10 +9,11 @@ data class TerritoryRepresentation(val id: String? = null,
                                    val start: PointRepresentation? = null,
                                    val end: PointRepresentation? = null,
                                    var painted_points: MutableSet<PointRepresentation> = mutableSetOf()) {
-    val painted_area: Int
+    val painted_area: Int?
         get() = painted_points.size
-    val area: Int
-        get() = (end!!.x!! - start!!.x!!) * (end!!.y!! - start!!.y!!)
+    val area: Int?
+        get() = if (end != null && end.x != null && end.y != null && start != null && start.x != null && start.y != null)
+            (end!!.x!! - start!!.x!!) * (end!!.y!! - start!!.y!!) else 0
 
     fun validate() {
         if (null == name || name == "")
@@ -90,3 +91,5 @@ class YMustBeGreaterThenZero : RuntimeException("Y must be greater or equals to 
 
 
 data class ErrorRepresentation(val cause: String? = "Not informed!")
+
+data class Totals(val totalArea: Int, val totalPaintedArea: Int)
