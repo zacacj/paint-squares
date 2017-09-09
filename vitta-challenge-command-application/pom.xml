@@ -45,21 +45,36 @@
                 <version>1.0.0</version>
                 <executions>
                     <execution>
-                        <id>default</id>
-                        <phase>install</phase>
+                        <id>build-image</id>
+                        <phase>package</phase>
                         <goals>
                             <goal>build</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>tag-image</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>tag</goal>
+                        </goals>
+                        <configuration>
+                            <image>${project.artifactId}:${project.version}</image>
+                            <newName>zacacj/${project.artifactId}:${project.version}</newName>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>push-image</id>
+                        <phase>deploy</phase>
+                        <goals>
                             <goal>push</goal>
                         </goals>
+                        <configuration>
+                            <imageName>zacacj/${project.artifactId}:${project.version}</imageName>
+                        </configuration>
                     </execution>
                 </executions>
                 <configuration>
                     <dockerDirectory>${project.basedir}</dockerDirectory>
-                    <imageName>zacacj/${project.artifactId}</imageName>
-                    <imageTags>
-                        <imageTag>${project.version}</imageTag>
-                        <imageTag>latest</imageTag>
-                    </imageTags>
                 </configuration>
             </plugin>
         </plugins>
