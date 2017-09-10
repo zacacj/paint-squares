@@ -2,11 +2,8 @@ package vitta.challenge.query.application
 
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.SpringApplication
-import org.springframework.boot.autoconfigure.AutoConfigureAfter
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.autoconfigure.data.mongo.MongoDataAutoConfiguration
-import org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration
-import org.springframework.boot.autoconfigure.mongo.embedded.EmbeddedMongoAutoConfiguration
 import org.springframework.context.annotation.ComponentScan
 import org.springframework.context.annotation.Import
 import vitta.challenge.query.event.handler.ErrorSubscription
@@ -17,8 +14,7 @@ import javax.annotation.PostConstruct
 
 @ComponentScan("vitta.challenge")
 @Import(MongoConfig::class)
-@SpringBootApplication(exclude = arrayOf(MongoAutoConfiguration::class, MongoDataAutoConfiguration::class))
-@AutoConfigureAfter(EmbeddedMongoAutoConfiguration::class)
+@SpringBootApplication(exclude = arrayOf(MongoDataAutoConfiguration::class))
 class AppConfig {
     @Autowired
     lateinit var territorySubscription: TerritorySubscription

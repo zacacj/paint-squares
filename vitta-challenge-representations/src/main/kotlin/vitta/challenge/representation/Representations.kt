@@ -1,5 +1,6 @@
 package vitta.challenge.representation
 
+import com.fasterxml.jackson.annotation.JsonFilter
 import vitta.challenge.domain.Point
 import vitta.challenge.domain.Square
 import vitta.challenge.domain.Territory
@@ -13,6 +14,7 @@ data class TerritoryRepresentation(val id: String? = null,
 ) {
 
 
+    @JsonFilter("withpainted")
     val painted_points: MutableSet<PointRepresentation> = mutableSetOf()
     var paintedArea: Int = painted_points.size
     val area: Int = if (end != null && end.x != null && end.y != null && start != null && start.x != null && start.y != null)

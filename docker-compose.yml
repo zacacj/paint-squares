@@ -21,3 +21,47 @@ services:
      - "eventstore.com:127.0.0.1"
      - "localhost:127.0.0.1"
    restart: always
+ vitta-challenge-command-application-1:
+   image: zacacj/vitta-challenge-command-application:1.0-SNAPSHOT
+   depends_on:
+     - setup
+   restart: always
+ vitta-challenge-command-application-2:
+   image: zacacj/vitta-challenge-command-application:1.0-SNAPSHOT
+   depends_on:
+     - setup
+   restart: always
+ vitta-challenge-query-application-1:
+   image: zacacj/vitta-challenge-query-application:1.0-SNAPSHOT
+   depends_on:
+     - setup
+   restart: always
+ vitta-challenge-query-application-2:
+    image: zacacj/vitta-challenge-query-application:1.0-SNAPSHOT
+    depends_on:
+      - setup
+    restart: always
+ vitta-challenge-ui-application-1:
+    image: zacacj/vitta-challenge-ui-application:1.0-SNAPSHOT
+    depends_on:
+      - setup
+    restart: always
+ vitta-challenge-ui-application-2:
+    image: zacacj/vitta-challenge-ui-application:1.0-SNAPSHOT
+    depends_on:
+      - setup
+    restart: always
+ proxy:
+   build: ./nginx
+   ports:
+    - 8888:8888
+    - 8889:8889
+    - 8890:8890
+   depends_on:
+     - vitta-challenge-command-application-1
+     - vitta-challenge-command-application-2
+     - vitta-challenge-query-application-1
+     - vitta-challenge-query-application-2
+     - vitta-challenge-ui-application-1
+     - vitta-challenge-ui-application-2
+   restart: always
