@@ -1,0 +1,242 @@
+{
+  "variables": [],
+  "info": {
+    "name": "Vitta Challenge",
+    "_postman_id": "91fa18e4-a109-20be-1361-79a47c3393d6",
+    "description": "",
+    "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Add Territory",
+      "request": {
+        "url": "localhost:8888/territories",
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "description": ""
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"name\": \"B\",\r\n  \"start\": { \"x\": 5, \"y\":5 },\r\n  \"end\": { \"x\": 8, \"y\": 8 }\r\n}"
+        },
+        "description": ""
+      },
+      "response": []
+    },
+    {
+      "name": "Get Territory By Id",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "tests[\"Status code is 200\"] = (responseCode.code === 200);",
+              ""
+            ]
+          }
+        }
+      ],
+      "request": {
+        "url": "localhost:8889/territories/{{territoryId}}",
+        "method": "GET",
+        "header": [],
+        "body": {},
+        "description": ""
+      },
+      "response": []
+    },
+    {
+      "name": "Add Territory Fail",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "tests[\"Status code is 400\"] = (responseCode.code === 400);"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "url": "localhost:8888/territories",
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "description": ""
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"name\": \"B\",\r\n  \"start\": { \"x\": 5, \"y\":5 },\r\n  \"end\": { \"x\": 8, \"y\": 8 }\r\n}"
+        },
+        "description": ""
+      },
+      "response": []
+    },
+    {
+      "name": "Add Territory to be deleted",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "tests[\"Status code is 201\"] = (responseCode.code === 201);",
+              "",
+              "var territoryId = JSON.parse(responseBody).id",
+              "postman.setGlobalVariable(\"territoryId\", territoryId);"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "url": "localhost:8888/territories",
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "description": ""
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"name\": \"A\",\r\n  \"start\": { \"x\": 10, \"y\":10 },\r\n  \"end\": { \"x\": 12, \"y\": 12 }\r\n}"
+        },
+        "description": ""
+      },
+      "response": []
+    },
+    {
+      "name": "Delete Territory",
+      "request": {
+        "url": "localhost:8888/territories/{{territoryId}}",
+        "method": "DELETE",
+        "header": [],
+        "body": {},
+        "description": ""
+      },
+      "response": []
+    },
+    {
+      "name": "Get Territory By Not Found",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "tests[\"Status code is 404\"] = (responseCode.code === 404);",
+              ""
+            ]
+          }
+        }
+      ],
+      "request": {
+        "url": "localhost:8889/territories/{{territoryId}}",
+        "method": "GET",
+        "header": [],
+        "body": {},
+        "description": ""
+      },
+      "response": []
+    },
+    {
+      "name": "Add Territory Again",
+      "request": {
+        "url": "localhost:8888/territories",
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "description": ""
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"name\": \"C\",\r\n  \"start\": { \"x\": 15, \"y\":15 },\r\n  \"end\": { \"x\": 21, \"y\": 21 }\r\n}"
+        },
+        "description": ""
+      },
+      "response": []
+    },
+    {
+      "name": "Get List of Territories",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "tests[\"Status code is 200\"] = (responseCode.code === 200);",
+              "",
+              "var body = JSON.parse(responseBody);",
+              "tests[\"Count: \"  + body.value.length] = body.value.length === 2;"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "url": "localhost:8889/territories",
+        "method": "GET",
+        "header": [],
+        "body": {},
+        "description": ""
+      },
+      "response": []
+    },
+    {
+      "name": "Paint Point",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "tests[\"Status code is 200\"] = (responseCode.code === 200);"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "url": "http://localhost:8888/squares/5/5",
+        "method": "PATCH",
+        "header": [],
+        "body": {},
+        "description": ""
+      },
+      "response": []
+    },
+    {
+      "name": "Paint Point Failed",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "tests[\"Status code is 404\"] = (responseCode.code === 404);"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "url": "http://localhost:8888/squares/150/150",
+        "method": "PATCH",
+        "header": [],
+        "body": {},
+        "description": ""
+      },
+      "response": []
+    }
+  ]
+}
