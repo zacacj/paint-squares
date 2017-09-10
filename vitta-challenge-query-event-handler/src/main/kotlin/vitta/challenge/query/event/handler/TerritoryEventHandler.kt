@@ -44,7 +44,7 @@ class TerritoryEventHandler(val territoryRepository: TerritoryRepository,
 
     private fun execute(aggregateId: AggregateId, event: SquarePainted, version: AggregateVersion) {
         territoryRepository.findById(aggregateId.value).subscribe {
-            it.painted_points.add(PointRepresentation(event.point.x, event.point.y))
+            it.addPoint(PointRepresentation(event.point.x, event.point.y))
             territoryRepository.save(it).subscribe()
         }
     }

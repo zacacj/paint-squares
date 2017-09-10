@@ -15,6 +15,7 @@ class QueryTerritoryRoutes(val queryTerritoryHandler: QueryTerritoryHandler) {
         return router {
             GET("/territories") { queryTerritoryHandler.handleGetTerritories(it) }
             GET("/territories/{id}") { queryTerritoryHandler.handleGetTerritoryById(it) }
+            GET("/totals") { queryTerritoryHandler.handleGetTotals() }
         }
 
     }

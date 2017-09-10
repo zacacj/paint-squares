@@ -17,14 +17,12 @@ class App extends React.Component {
                     <li><Link to='/bymostpaintedarea'>List of Territories Ordered By Most Painted Area</Link></li>
                     <li><Link to='/bymostproportionalpaintedarea'>List of Territories Ordered By Most Proportional
                         Painted Area</Link></li>
-                    <li><Link to='/lastfiveadded'>List of Last Added Territories</Link></li>
-                    <li><Link to='/lastfiveerrors'>List of Last 5 Errors</Link></li>
+                    <li><Link to='/lastfiveadded'>List of Last 5 Added Territories</Link></li>
                 </ul>
                 <Switch>
                     <Route exact path="/bymostpaintedarea" component={OrderedByMostPaitedArea}/>
                     <Route exact path="/bymostproportionalpaintedarea" component={OrderedByMostProportionalPaitedArea}/>
                     <Route exact path="/lastfiveadded" component={LastFiveAdded}/>
-                    <Route exact path="/lastfiveerrors" component={LastFiveErrors}/>
                 </Switch>
             </div>
         )

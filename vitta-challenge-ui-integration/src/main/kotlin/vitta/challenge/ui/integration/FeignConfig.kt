@@ -1,10 +1,15 @@
 package vitta.challenge.ui.integration
 
+import com.fasterxml.jackson.annotation.JsonInclude
+import com.fasterxml.jackson.databind.ObjectMapper
+import com.fasterxml.jackson.databind.SerializationFeature
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
+import com.fasterxml.jackson.module.kotlin.KotlinModule
 import feign.Feign
 import feign.Request
 import feign.Retryer
-import feign.gson.GsonDecoder
-import feign.gson.GsonEncoder
+import feign.jackson.JacksonDecoder
+import feign.jackson.JacksonEncoder
 import feign.okhttp.OkHttpClient
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.context.annotation.Bean
@@ -27,11 +32,22 @@ class FeignConfig {
     fun catalogManagerClientFeign(): TerritoryApi {
 
         return Feign.builder()
-                .encoder(GsonEncoder())
-                .decoder(GsonDecoder())
+                .encoder(JacksonEncoder(JacksonExtension.jacksonObjectMapper))
+                .decoder(JacksonDecoder(JacksonExtension.jacksonObjectMapper))
                 .client(OkHttpClient())
                 .options(Request.Options(TEN_SECONDS, ONE_MINUTE))
                 .retryer(Retryer.NEVER_RETRY)
                 .target(TerritoryApi::class.java, vittaChallenteQueryUrl)
     }
+}
+
+object JacksonExtension {
+
+    val jacksonObjectMapper: ObjectMapper by lazy {
+        ObjectMapper().registerModule(JavaTimeModule())
+                .disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS)
+                .registerModule(KotlinModule())
+                .setSerializationInclusion(JsonInclude.Include.NON_NULL)
+    }
+
 }

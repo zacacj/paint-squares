@@ -37,7 +37,7 @@ class VittaChallengeQueryRepositoryApplicationTests {
         val territoryFetched = territoryRepository.findById(territoryId.value).block()
         Assert.assertEquals(territory.name, territoryFetched!!.name)
         Assert.assertEquals(1600, territoryFetched.area)
-        Assert.assertEquals(0, territoryFetched.painted_area)
+        Assert.assertEquals(0, territoryFetched.paintedArea)
     }
 
     @Test
