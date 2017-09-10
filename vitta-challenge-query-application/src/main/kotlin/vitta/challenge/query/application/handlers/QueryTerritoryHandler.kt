@@ -35,15 +35,25 @@ class QueryTerritoryHandler(val territoryRepository: TerritoryRepository, val te
                                             TerritoryRepresentation::class.java
             )
         }
-        return ServerResponse.ok().body(territoryRepository.findAll(),
+        val withpainted = request.queryParam("withpainted")
+        val isWithPainted = if (withpainted.isPresent) {
+            withpainted.get() == "true"
+        } else false
+
+        return ServerResponse.ok().body(territoryRepository.findAll().map { it -> it.withPainted(isWithPainted) },
                                         TerritoryRepresentation::class.java
         )
     }
 
     fun handleGetTerritoryById(request: ServerRequest): Mono<ServerResponse> {
+
+        val withpainted = request.queryParam("withpainted")
+        val isWithPainted = if (withpainted.isPresent) {
+            withpainted.get() == "true"
+        } else false
         return territoryRepository.findById(request.pathVariable("id"))
                 .flatMap {
-                    ServerResponse.ok().body(Mono.just(it),
+                    ServerResponse.ok().body(Mono.just(it.withPainted(isWithPainted)),
                                              TerritoryRepresentation::class.java
                     )
                 }

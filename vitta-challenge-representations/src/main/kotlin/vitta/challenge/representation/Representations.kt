@@ -1,6 +1,5 @@
 package vitta.challenge.representation
 
-import com.fasterxml.jackson.annotation.JsonFilter
 import vitta.challenge.domain.Point
 import vitta.challenge.domain.Square
 import vitta.challenge.domain.Territory
@@ -13,10 +12,8 @@ data class TerritoryRepresentation(val id: String? = null,
                                    val createdAt: LocalDateTime = LocalDateTime.now()
 ) {
 
-
-    @JsonFilter("withpainted")
-    val painted_points: MutableSet<PointRepresentation> = mutableSetOf()
-    var paintedArea: Int = painted_points.size
+    var painted_points: MutableSet<PointRepresentation>? = mutableSetOf()
+    var paintedArea: Int = painted_points?.size ?: 0
     val area: Int = if (end != null && end.x != null && end.y != null && start != null && start.x != null && start.y != null)
             (end!!.x!! - start!!.x!!) * (end!!.y!! - start!!.y!!) else 0
     var proportionalArea: Int = if (area == 0) {
@@ -35,7 +32,6 @@ data class TerritoryRepresentation(val id: String? = null,
             throw StartMustNotBeGreaterThenEnd("x", start.x, end.x)
         if (end.y!! <= start.y!!)
             throw StartMustNotBeGreaterThenEnd("x", start.y, end.y)
-
     }
 
     companion object {
@@ -54,11 +50,16 @@ data class TerritoryRepresentation(val id: String? = null,
     }
 
     fun addPoint(point: PointRepresentation) {
-        painted_points.add(point)
-        paintedArea = painted_points.size
+        painted_points!!.add(point)
+        paintedArea = painted_points!!.size
         proportionalArea = if (area == 0) {
             0
         } else paintedArea * 100 / area
+    }
+
+    fun withPainted(isWithPainted: Boolean): TerritoryRepresentation {
+        if (!isWithPainted) painted_points = null
+        return this
     }
 }
 

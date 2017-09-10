@@ -27,6 +27,7 @@ class AppConfig {
         territorySubscription.start()
         errorSubscription.start()
     }
+
 }
 
 
