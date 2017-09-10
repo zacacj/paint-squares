@@ -9,6 +9,20 @@
   "item": [
     {
       "name": "Add Territory",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "tests[\"Status code is 201\"] = (responseCode.code === 201);",
+              "",
+              "var territoryId = JSON.parse(responseBody).id",
+              "postman.setGlobalVariable(\"territoryId\", territoryId);"
+            ]
+          }
+        }
+      ],
       "request": {
         "url": "localhost:8888/territories",
         "method": "POST",
@@ -234,6 +248,26 @@
         "method": "PATCH",
         "header": [],
         "body": {},
+        "description": ""
+      },
+      "response": []
+    },
+    {
+      "name": "Add Territory copy",
+      "request": {
+        "url": "localhost:8888/territories",
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "description": ""
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"name\": \"B\",\r\n  \"start\": { \"x\": 5, \"y\":5 },\r\n  \"end\": { \"x\": 8, \"y\": 8 }\r\n}"
+        },
         "description": ""
       },
       "response": []
