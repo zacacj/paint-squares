@@ -5,8 +5,10 @@ import org.springframework.boot.SpringApplication
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.ComponentScan
+import vitta.challenge.command.repository.CommandErrorRepository
 import vitta.challenge.command.repository.CommandPlaneRepository
 import vitta.challenge.command.repository.CommandTerritoryRepository
+import vitta.challenge.domain.ErrorCommandHandler
 import vitta.challenge.domain.TerritoryCommandHandler
 
 
@@ -17,9 +19,14 @@ class ControllerApplicationConfig{
     @Bean
     @Autowired
     fun territoryCommandHandler(territoryRepository: CommandTerritoryRepository,
-                                planeRepository: CommandPlaneRepository ) =
+                                planeRepository: CommandPlaneRepository) =
             TerritoryCommandHandler(territoryRepository = territoryRepository,
                                     planeRepository = planeRepository)
+
+    @Bean
+    @Autowired
+    fun errorCommandHandler(errorRepository: CommandErrorRepository) =
+            ErrorCommandHandler(errorRepository = errorRepository)
 }
 
 fun main(args: Array<String>) {

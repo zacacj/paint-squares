@@ -9,6 +9,7 @@ import org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration
 import org.springframework.boot.autoconfigure.mongo.embedded.EmbeddedMongoAutoConfiguration
 import org.springframework.context.annotation.ComponentScan
 import org.springframework.context.annotation.Import
+import vitta.challenge.query.event.handler.ErrorSubscription
 import vitta.challenge.query.event.handler.TerritorySubscription
 import vitta.challenge.query.repository.MongoConfig
 import javax.annotation.PostConstruct
@@ -20,11 +21,15 @@ import javax.annotation.PostConstruct
 @AutoConfigureAfter(EmbeddedMongoAutoConfiguration::class)
 class AppConfig {
     @Autowired
-    lateinit var subscriber: TerritorySubscription
+    lateinit var territorySubscription: TerritorySubscription
+
+    @Autowired
+    lateinit var errorSubscription: ErrorSubscription
 
     @PostConstruct
     fun initSubscribe() {
-        subscriber.start()
+        territorySubscription.start()
+        errorSubscription.start()
     }
 }
 

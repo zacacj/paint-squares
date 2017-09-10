@@ -20,18 +20,7 @@ class ProxyController(val territoryApi: TerritoryApi) {
             territoryApi.getOrderedByMostProportionalPaintedArea()
 
     @GetMapping(path = arrayOf("/lastfiveerrors"))
-    fun getLastFiveErros() =
-            listOf(vitta.challenge.representation
-                           .TerritoryRepresentation(id = "teste",
-                                                    name = "teste",
-                                                    start = vitta.challenge.representation.PointRepresentation(
-                                                            5, 5
-                                                    ),
-                                                    end = vitta.challenge.representation.PointRepresentation(
-                                                            7, 7
-                                                    )
-                           )
-            )
+    fun getLastFiveErros() = territoryApi.getLastFiveErros()
 
     @GetMapping(path = arrayOf("/lastfiveadded"))
     fun getLastFiveAddedTerritories() =

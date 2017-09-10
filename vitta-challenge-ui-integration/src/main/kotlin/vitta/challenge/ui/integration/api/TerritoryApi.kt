@@ -2,6 +2,7 @@ package vitta.challenge.ui.integration.api
 
 import feign.Headers
 import feign.RequestLine
+import vitta.challenge.representation.ErrorRepresentation
 import vitta.challenge.representation.TerritoryRepresentation
 import vitta.challenge.representation.Totals
 
@@ -17,6 +18,9 @@ interface TerritoryApi {
 
     @RequestLine("GET /territories?ordered=proportional")
     fun getOrderedByMostProportionalPaintedArea(): List<TerritoryRepresentation>
+
+    @RequestLine("GET /errors?limited=true")
+    fun getLastFiveErros(): List<ErrorRepresentation>
 
     @RequestLine("GET /totals")
     fun getTotais(): Totals

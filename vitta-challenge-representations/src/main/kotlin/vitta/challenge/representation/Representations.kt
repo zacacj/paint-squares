@@ -103,6 +103,9 @@ class XMustBeGreaterThenZero : RuntimeException("X must be greater or equals to 
 class YMustBeGreaterThenZero : RuntimeException("Y must be greater or equals to then zero")
 
 
-data class ErrorRepresentation(val cause: String? = "Not informed!")
+data class ErrorRepresentation(val id: String? = null,
+                               val request: String? = null,
+                               val cause: String? = "Not informed!",
+                               val createdAt: LocalDateTime? = LocalDateTime.now())
 
 data class Totals(val totalArea: Long, val totalPaintedArea: Long)

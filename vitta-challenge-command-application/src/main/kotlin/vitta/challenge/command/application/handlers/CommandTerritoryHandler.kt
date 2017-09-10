@@ -1,6 +1,7 @@
 package vitta.challenge.command.application.handlers
 
 import br.com.zup.eventsourcing.core.Repository
+import br.com.zup.eventsourcing.core.config.objectToJson
 import org.springframework.http.MediaType
 import org.springframework.stereotype.Service
 import org.springframework.web.reactive.function.server.ServerRequest
@@ -10,6 +11,8 @@ import reactor.core.publisher.Mono
 import reactor.core.publisher.toMono
 import vitta.challenge.domain.CreateTerritory
 import vitta.challenge.domain.DeleteTerritory
+import vitta.challenge.domain.ErrorCommandHandler
+import vitta.challenge.domain.LogError
 import vitta.challenge.domain.Name
 import vitta.challenge.domain.Point
 import vitta.challenge.domain.TerritoryCommandHandler
@@ -20,11 +23,20 @@ import java.net.URI
 
 
 @Service
-class CommandTerritoryHandler(val territoryCommandHandler: TerritoryCommandHandler) {
+class CommandTerritoryHandler(val territoryCommandHandler: TerritoryCommandHandler,
+                              val errorCommandHandler: ErrorCommandHandler) {
 
     fun handleAddTerritories(request: ServerRequest): Mono<ServerResponse> {
 
         val territoryRequest = request.bodyToMono(TerritoryRepresentation::class.java)
+                .doOnError {
+                    errorCommandHandler.handle(
+                            LogError(request = request.toString(),
+                                     error = it.message.objectToJson()
+                            )
+                    )
+                }
+
         val territoryId = TerritoryId()
 
         return territoryRequest.flatMap {
@@ -35,6 +47,12 @@ class CommandTerritoryHandler(val territoryCommandHandler: TerritoryCommandHandl
                         TerritoryRepresentation.fromDomain(territory).toMono()
                 )
             } catch (e: RuntimeException) {
+                errorCommandHandler.handle(
+                        LogError(request = request.toString() + "{$it}",
+                                 error = e.message ?: e.javaClass.simpleName
+                        )
+                )
+
                 ServerResponse.badRequest().body(ErrorRepresentation(e.message).toMono())
             }
         }
@@ -55,6 +73,11 @@ class CommandTerritoryHandler(val territoryCommandHandler: TerritoryCommandHandl
             territoryCommandHandler.handle(DeleteTerritory(TerritoryId(id)))
             ServerResponse.ok().build()
         } catch (e: Throwable) {
+            errorCommandHandler.handle(
+                    LogError(request = serverRequest.toString(),
+                             error = e.message ?: e.javaClass.simpleName
+                    )
+            )
             when (e) {
                 is Repository.NotFoundException -> ServerResponse.notFound().build()
                 else -> ServerResponse.badRequest().body(ErrorRepresentation(e.message).toMono())
