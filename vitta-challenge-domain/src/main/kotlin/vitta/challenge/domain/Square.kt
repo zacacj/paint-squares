@@ -7,8 +7,7 @@ import java.util.*
 
 data class Square(val territoryId: TerritoryId? = null,
                   val point: Point,
-                  val painted: Painted) {
-}
+                  val painted: Painted)
 
 data class Painted(val value: Boolean)
 
