@@ -41,3 +41,6 @@ The dashboard by proxy should be open on localhost:8890
 If you want to run a mvn clean install comment the <goal>push</goal> on docker-maven-plugin
 
 Tests limited to an plane from 0..300 and 0..300
+
+![alt text](https://github.com/zacacj/vitta-challenge/blob/master/docs/vitta-challenge.jpg)
+
