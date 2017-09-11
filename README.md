@@ -18,7 +18,7 @@ There are three parts on this project
   - React
   - Feign
 
-Using EventStore and eventSourcing on Command Responsability. Spring Reactive with Mongo DB on Query. And have as UI
+Using EventStore and eventSourcing on Command Responsability. Spring Reactive with Mongo DB on Query. And have UI
 apart using Feign to access the Query. So you can scale write and read independently
 
 There is a docker-compose with all the images, but run one at a time in the following order, and before run a 
