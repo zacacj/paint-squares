@@ -1,7 +1,7 @@
 #Paint Squares
 
-[![Build Status](https://travis-ci.org/zacacj/paint-squares.svg?branch=master)](https://travis-ci.org/zacacj/paint-squares)
-[![codecov](https://codecov.io/gh/zacacj/paint-squares/branch/master/graph/badge.svg)](https://codecov.io/gh/zacacj/paint-squares)
+[![Build Status](https://travis-ci.org/zawer-xyz/paint-squares.svg?branch=master)](https://travis-ci.org/zawer-xyz/paint-squares)
+[![codecov](https://codecov.io/gh/zawer-xyz/paint-squares/branch/master/graph/badge.svg)](https://codecov.io/gh/zawer-xyz/paint-squares)
 
 The proposed solution uses some key concept like DDD, Event Sourcing, CQRS.
 
