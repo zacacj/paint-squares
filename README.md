@@ -42,5 +42,3 @@ If you want to run a mvn clean install comment the <goal>push</goal> on docker-m
 
 Tests limited to an plane from 0..300 and 0..300
 
-![alt text](https://github.com/zacacj/paint-squares/blob/master/docs/paint-squares.jpg)
-
