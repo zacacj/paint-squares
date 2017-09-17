@@ -4,4 +4,4 @@ fromCategory('Territory')
         $any: function (s, e) {
             linkTo("Territory", e);
         }
-    })
+    });

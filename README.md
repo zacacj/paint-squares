@@ -1,19 +1,19 @@
-#Vitta Challenge
+#Paint Squares
 
-[![Build Status](https://travis-ci.org/zacacj/vitta-challenge.svg?branch=master)](https://travis-ci.org/zacacj/vitta-challenge)
-[![codecov](https://codecov.io/gh/zacacj/vitta-challenge/branch/master/graph/badge.svg)](https://codecov.io/gh/zacacj/vitta-challenge)
+[![Build Status](https://travis-ci.org/zacacj/paint-squares.svg?branch=master)](https://travis-ci.org/zacacj/paint-squares)
+[![codecov](https://codecov.io/gh/zacacj/paint-squares/branch/master/graph/badge.svg)](https://codecov.io/gh/zacacj/paint-squares)
 
 The proposed solution uses some key concept like DDD, Event Sourcing, CQRS.
 
 There are three parts on this project
 
-- Command: vitta-challenge-command-application
+- Command: paint-squares-command-application
   - EventSourcing: EventStore
   - Spring Reactive Web
-- Query: vitta-challenge-query-application
+- Query: paint-squares-query-application
   - Spring Reactive Web
   - Spring MongoDB Reactive
-- UI: vitta-challenge-ui-application
+- UI: paint-squares-ui-application
   - Node.js
   - React
   - Feign
@@ -26,12 +26,12 @@ docker-compose build to build the proxy
 - mongodb
 - event-store
 - setup
-- vitta-challenge-command-application-1
-- vitta-challenge-command-application-2
-- vitta-challenge-query-application-1
-- vitta-challenge-query-application-2
-- vitta-challenge-ui-application-1
-- vitta-challenge-ui-application-2
+- paint-squares-command-application-1
+- paint-squares-command-application-2
+- paint-squares-query-application-1
+- paint-squares-query-application-2
+- paint-squares-ui-application-1
+- paint-squares-ui-application-2
 - proxy
 
 There's a Postman to be imported on /docs/api
@@ -42,5 +42,5 @@ If you want to run a mvn clean install comment the <goal>push</goal> on docker-m
 
 Tests limited to an plane from 0..300 and 0..300
 
-![alt text](https://github.com/zacacj/vitta-challenge/blob/master/docs/vitta-challenge.jpg)
+![alt text](https://github.com/zacacj/paint-squares/blob/master/docs/paint-squares.jpg)
 

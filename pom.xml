@@ -4,8 +4,8 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>vitta.challenge</groupId>
-    <artifactId>vitta-challenge</artifactId>
+    <groupId>xyz.zawer</groupId>
+    <artifactId>paint-squares</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
@@ -17,15 +17,15 @@
     </parent>
 
     <modules>
-        <module>vitta-challenge-domain</module>
-        <module>vitta-challenge-command-repository</module>
-        <module>vitta-challenge-query-application</module>
-        <module>vitta-challenge-query-repository</module>
-        <module>vitta-challenge-command-application</module>
-        <module>vitta-challenge-query-event-handler</module>
-        <module>vitta-challenge-representations</module>
-        <module>vitta-challenge-ui-application</module>
-        <module>vitta-challenge-ui-integration</module>
+        <module>paint-squares-domain</module>
+        <module>paint-squares-command-repository</module>
+        <module>paint-squares-query-application</module>
+        <module>paint-squares-query-repository</module>
+        <module>paint-squares-command-application</module>
+        <module>paint-squares-query-event-handler</module>
+        <module>paint-squares-representations</module>
+        <module>paint-squares-ui-application</module>
+        <module>paint-squares-ui-integration</module>
     </modules>
 
     <properties>
@@ -72,32 +72,32 @@
         <dependencies>
             <dependency>
                 <groupId>${project.groupId}</groupId>
-                <artifactId>vitta-challenge-domain</artifactId>
+                <artifactId>paint-squares-domain</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>${project.groupId}</groupId>
-                <artifactId>vitta-challenge-command-repository</artifactId>
+                <artifactId>paint-squares-command-repository</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>${project.groupId}</groupId>
-                <artifactId>vitta-challenge-query-event-handler</artifactId>
+                <artifactId>paint-squares-query-event-handler</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>${project.groupId}</groupId>
-                <artifactId>vitta-challenge-ui-integration</artifactId>
+                <artifactId>paint-squares-ui-integration</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>${project.groupId}</groupId>
-                <artifactId>vitta-challenge-query-repository</artifactId>
+                <artifactId>paint-squares-query-repository</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>${project.groupId}</groupId>
-                <artifactId>vitta-challenge-representations</artifactId>
+                <artifactId>paint-squares-representations</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
